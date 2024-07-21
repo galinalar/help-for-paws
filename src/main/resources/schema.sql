@@ -1,0 +1,19 @@
+CREATE TABLE IF NOT EXISTS persons
+(
+    id   INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS shelters
+(
+    id   INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS pets
+(
+    id        INT AUTO_INCREMENT PRIMARY KEY,
+    name      VARCHAR(255) NOT NULL,
+    shelter_id INT          NOT NULL,
+    FOREIGN KEY (shelter_id) REFERENCES shelters(id)
+);
