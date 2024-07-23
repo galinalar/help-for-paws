@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import paws.domain.*;
+import paws.dto.PersonDto;
 import paws.service.*;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class PersonCommands {
 
     @ShellMethod(value = "get persons", key = {"persons", "p"})
     public String getAllAuthors() {
-        List<Person> authors = personService.getAll();
+        List<PersonDto> authors = personService.getAll();
         List<Pet> pets = petService.getAll();
         List<Shelter> shelters = shelterService.getAll();
         List<PersonQuestion> questions = personQuestionService.getAll();

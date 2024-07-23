@@ -1,11 +1,12 @@
 package paws.service;
 
 import paws.domain.Person;
+import paws.dto.PersonDto;
 
 import java.util.List;
 
 public interface PersonService {
-    List<Person> getAll();
+    List<PersonDto> getAll();
 
-    Person getPersonById(Long id);
+    PersonDto getPersonById(Long id);
 }
