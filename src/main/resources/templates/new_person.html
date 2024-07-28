@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Создать персону</title>
+</head>
+<body>
+<form method="POST" th:action="@{/persons/create}">
+    <input type="text" placeholder="Введите имя" name="username">
+    <input type="submit" value="Создать">
+</form>
+</body>
+</html>

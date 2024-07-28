@@ -37,8 +37,9 @@ public class PersonServiceImpl implements PersonService{
     }
 
     @Override
-    public void savePerson(Person person) {
+    public Person savePerson(Person person) {
         repository.save(person);
         Person personNew = repository.findByName(person.getName());
+        return personNew;
     }
 }

@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS application_user
     username      VARCHAR(255) NOT NULL,
      password VARCHAR(255)          NOT NULL,
     role_id INT          NOT NULL,
-    person_id INT          NOT NULL,
+    person_id INT          ,
     FOREIGN KEY (person_id) REFERENCES persons(id),
     FOREIGN KEY (role_id) REFERENCES user_role(id)
 );

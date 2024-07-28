@@ -11,5 +11,5 @@ public interface PersonService {
     PersonDto getPersonById(Long id);
     Person getCurrentUser(String name);
 
-    void savePerson(Person person);
+    Person savePerson(Person person);
 }

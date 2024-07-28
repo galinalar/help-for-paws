@@ -18,7 +18,6 @@ import javax.security.auth.login.AccountException;
 @RequestMapping("/account")
 public class AccountController {
     private final AccountService accountService;
-    private final PersonService personService;
 
     @GetMapping("/registration")
     public String registration(ApplicationUser applicationUser) {

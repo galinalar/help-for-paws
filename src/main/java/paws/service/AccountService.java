@@ -43,6 +43,14 @@ public class AccountService {
         applicationUserRepository.save(user);
     }
 
+    public void updateUser(ApplicationUser user) throws AccountException {
+        applicationUserRepository.save(user);
+    }
+
+    public ApplicationUser getUser(String name) throws AccountException {
+        return applicationUserRepository.findByUsername(name).orElseThrow(RuntimeException::new);
+    }
+
     public Token loginAccount(String username, String password) throws AccountException {
 
         Authentication authentication = authenticationManager
