@@ -9,6 +9,6 @@ import paws.dto.PetDto;
 
 @Mapper(componentModel = "spring")
 public interface PetMapper {
-    @Mapping(target = "shelter", source = "shelters.shelter_id")
+//    @Mapping(target = "shelter", source = "shelterDto")
     PetDto map(Pet comment);
 }

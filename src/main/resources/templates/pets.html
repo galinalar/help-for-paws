@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Питомцы</title>
+</head>
+<body>
+
+<div th:each="pet: ${pet_list}">
+  <h2 th:text="${pet.name}"></h2>
+  <a th:href="@{/combination/{id}(id=${pet.id})}">Проверить совместимость</a>
+</div>
+</body>
+</html>

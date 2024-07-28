@@ -9,4 +9,7 @@ public interface PersonService {
     List<PersonDto> getAll();
 
     PersonDto getPersonById(Long id);
+    Person getCurrentUser(String name);
+
+    void savePerson(Person person);
 }

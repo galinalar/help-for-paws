@@ -11,6 +11,6 @@ import paws.dto.PetAnswerDto;
 
 @Mapper(componentModel = "spring")
 public interface PetAnswerMapper {
-    @Mapping(target = "question", source = "pet_questions.pet_question_id")
+    @Mapping(target = "question", source = "question")
     PetAnswerDto map(PetAnswer comment);
 }

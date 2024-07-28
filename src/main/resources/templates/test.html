@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Тест</title>
+</head>
+<body>
+<form method="POST" th:action="@{/test}">
+<div th:each="question: ${question_list}">
+  <h2 th:text="${question.question}"></h2>
+  <div th:each="answer: ${question.answers}">
+      <input type="radio" name="question${question.id}" th:text="${answer.answer}">
+  </div>
+<!--  <a th:href="@{/pet/{id}(id=${pet.id})}">Подробнее</a>-->
+
+    <button type="submit">Отправить</button>
+
+</div>
+</form>
+</body>
+</html>

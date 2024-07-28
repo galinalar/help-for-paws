@@ -9,7 +9,7 @@ import paws.dto.PersonTestDto;
 
 @Mapper(componentModel = "spring")
 public interface PersonTestMapper {
-    @Mapping(target = "person", source = "persons.person_id")
-    @Mapping(target = "answer", source = "person_answers.person_answer_id")
+    @Mapping(target = "person", source = "person")
+    @Mapping(target = "answer", source = "answer")
     PersonTestDto map(PersonTest comment);
 }

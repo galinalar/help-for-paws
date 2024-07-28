@@ -85,3 +85,20 @@ CREATE TABLE IF NOT EXISTS person_tests
     FOREIGN KEY (person_id) REFERENCES persons(id),
     FOREIGN KEY (person_answer_id) REFERENCES person_answers(id)
 );
+
+CREATE TABLE IF NOT EXISTS user_role
+(
+    id        INT AUTO_INCREMENT PRIMARY KEY,
+   role_type VARCHAR(255)          NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS application_user
+(
+    id        INT AUTO_INCREMENT PRIMARY KEY,
+    username      VARCHAR(255) NOT NULL,
+     password VARCHAR(255)          NOT NULL,
+    role_id INT          NOT NULL,
+    person_id INT          NOT NULL,
+    FOREIGN KEY (person_id) REFERENCES persons(id),
+    FOREIGN KEY (role_id) REFERENCES user_role(id)
+);

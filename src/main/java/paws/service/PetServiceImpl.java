@@ -5,6 +5,10 @@ import org.springframework.stereotype.Service;
 import paws.domain.Person;
 import paws.domain.Pet;
 import paws.domain.Shelter;
+import paws.dto.PetDto;
+import paws.dto.ShelterDto;
+import paws.mapper.PersonMapper;
+import paws.mapper.PetMapper;
 import paws.repository.PetRepository;
 
 import java.util.List;
@@ -15,9 +19,17 @@ import java.util.stream.StreamSupport;
 public class PetServiceImpl implements PetService{
     private final PetRepository repository;
     private final ShelterService shelterService;
+    private final PetMapper mapper;
     @Override
-    public List<Pet> getAll() {
-        return StreamSupport.stream(repository.findAll().spliterator(), false).toList();
+    public List<PetDto> getAll() {
+        return StreamSupport.stream(repository.findAll().spliterator(), false)
+                .map(mapper::map).toList();
+    }
+
+    @Override
+    public List<PetDto> getAllbyShelter(Long id) {
+        return StreamSupport.stream(repository.findByShelterId(id).spliterator(), false)
+                .map(mapper::map).toList();
     }
 
     @Override
@@ -27,16 +39,16 @@ public class PetServiceImpl implements PetService{
 
     @Override
     public void savePet(String name, Long shelterId) {
-        Shelter shelter = shelterService.getShelterById(shelterId);
-        Pet pet = new Pet(null, name, shelter);
-        repository.save(pet);
+//        ShelterDto shelter = shelterService.getShelterById(shelterId);
+//        Pet pet = new Pet(null, name, shelter);
+//        repository.save(pet);
     }
 
     @Override
     public void updatePet(Long id, String name, Long shelterId) {
-        Shelter shelter = shelterService.getShelterById(shelterId);
-        Pet pet = new Pet(id, name, shelter);
-        repository.save(pet);
+//        Shelter shelter = shelterService.getShelterById(shelterId);
+//        Pet pet = new Pet(id, name, shelter);
+//        repository.save(pet);
 
     }
 

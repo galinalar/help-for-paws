@@ -9,6 +9,6 @@ import paws.dto.PersonDto;
 
 @Mapper(componentModel = "spring")
 public interface PersonAnswerMapper {
-    @Mapping(target = "question", source = "person_questions.person_question_id")
+    @Mapping(target = "question", source = "question")
     PersonAnswerDto map(PersonAnswer comment);
 }

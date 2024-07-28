@@ -3,6 +3,8 @@ package paws.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import paws.domain.Shelter;
+import paws.dto.ShelterDto;
+import paws.mapper.ShelterMapper;
 import paws.repository.ShelterRepository;
 
 import java.util.List;
@@ -14,14 +16,16 @@ public class ShelterServiceImpl implements ShelterService{
 
     private final ShelterRepository repository;
 
+    private final ShelterMapper mapper;
+
     @Override
-    public List<Shelter> getAll() {
+    public List<ShelterDto> getAll() {
         return StreamSupport.stream(repository.findAll().spliterator(), false)
-                .toList();
+                .map(mapper::map).toList();
     }
 
     @Override
-    public Shelter getShelterById(Long id) {
-        return repository.findById(id).orElseThrow(RuntimeException::new);
+    public ShelterDto getShelterById(Long id) {
+        return repository.findById(id).map(mapper::map).orElseThrow(RuntimeException::new);
     }
 }

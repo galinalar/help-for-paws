@@ -2,12 +2,13 @@ package paws.service;
 
 import paws.domain.Person;
 import paws.domain.Shelter;
+import paws.dto.ShelterDto;
 
 import java.util.List;
 
 public interface ShelterService {
-    List<Shelter> getAll();
+    List<ShelterDto> getAll();
 
-    Shelter getShelterById(Long id);
+    ShelterDto getShelterById(Long id);
 
 }

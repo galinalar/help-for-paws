@@ -9,7 +9,8 @@ import paws.dto.PersonDto;
 
 @Mapper(componentModel = "spring")
 public interface CombinationResultMapper {
-    @Mapping(target = "pet", source = "pets.pet_id")
-    @Mapping(target = "person", source = "persons.person_id")
+//    @Mapping(target = "pet", source = "pet")
+//    @Mapping(target = "person", source = "person")
+//    @Mapping(target = "shelter", source = "shelterDto")
     CombinationResultDto map(CombinationResult comment);
 }
