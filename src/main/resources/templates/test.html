@@ -9,7 +9,7 @@
 <div th:each="question: ${question_list}">
   <h2 th:text="${question.question}"></h2>
   <div th:each="answer: ${question.answers}">
-      <input type="radio" name="question${question.id}" th:text="${answer.answer}">
+      <input type="radio" name="${question.id}" th:text="${answer.answer}" value="${answer.id}">
   </div>
 <!--  <a th:href="@{/pet/{id}(id=${pet.id})}">Подробнее</a>-->
 

@@ -1,5 +1,6 @@
 package paws.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -33,8 +34,8 @@ public class TestController {
     }
     @ResponseBody
     @PostMapping("/test")
-    public void test(@RequestParam String... array) {
-            System.out.println("jjjj");
+    public void test(HttpServletRequest request) {//request.getParameterMap()
+            System.out.println("jjjj");//через мапу с реквестпарм
 
     }
 }
