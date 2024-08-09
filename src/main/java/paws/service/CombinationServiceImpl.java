@@ -3,6 +3,7 @@ package paws.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import paws.domain.*;
+import paws.exception.PawsException;
 import paws.repository.*;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public class CombinationServiceImpl implements CombinationService{
     private final CombinationRepository combinationRepository;
 
     @Override
-    public CombinationResult getByAnswers(Person person, Pet pet) {
+    public CombinationResult getByAnswers(Person person, Pet pet) throws PawsException {
         int result = 0;
 //        List<PersonTest> personAnswers = personTestRepository.findByPerson(person);
 //        List<PetTest> petAnswers = petTestRepository.findByPet(pet);
@@ -28,7 +29,8 @@ public class CombinationServiceImpl implements CombinationService{
         List<PetAnswer> petAnswers = petTestRepository.findAnswersByPet(pet);
         for (PersonAnswer personAnswer: personAnswers){
             for (PetAnswer petAnswer: petAnswers){
-                result+= combinationRepository.findResultByPetAnswerAndPersonAnswer(personAnswer, petAnswer).orElseThrow(RuntimeException::new);
+                result+= combinationRepository.findResultByPetAnswerAndPersonAnswer(personAnswer, petAnswer)
+                        .orElseThrow(()->new PawsException("Сочетание не найдено"));
             }
         }
         return new CombinationResult(null, result, pet, person);

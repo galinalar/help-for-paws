@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface PetRepository extends CrudRepository<Pet, Long> {
-    List<Pet> findByShelterId(Long id);
+    List<Pet> findByShelterIdAndActive(Long id, int active);
 }

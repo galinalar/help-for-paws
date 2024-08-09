@@ -6,10 +6,8 @@ import org.springframework.stereotype.Repository;
 import paws.domain.Person;
 import paws.domain.PersonAnswer;
 import paws.domain.PersonTest;
-import paws.domain.UserRole;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface PersonTestRepository extends CrudRepository<PersonTest, Long> {

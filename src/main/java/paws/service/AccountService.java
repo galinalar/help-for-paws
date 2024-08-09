@@ -1,17 +1,11 @@
 package paws.service;
 
-import com.nimbusds.jose.JOSEException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import paws.domain.ApplicationUser;
-import paws.domain.Token;
 import paws.domain.UserRole;
+import paws.exception.PawsException;
 import paws.repository.ApplicationUserRepository;
 import paws.repository.UserRoleRepository;
 
@@ -23,8 +17,6 @@ public class AccountService {
     private final ApplicationUserRepository applicationUserRepository;
     private final UserRoleRepository userRoleRepository;
     private final PasswordEncoder passwordEncoder;
-    private final JwtSecurityService jwtSecurityService;
-    private final AuthenticationManager authenticationManager;
 
     public void registration(ApplicationUser user) throws AccountException {
         if (applicationUserRepository.existsByUsername(user.getUsername())) {
@@ -47,23 +39,8 @@ public class AccountService {
         applicationUserRepository.save(user);
     }
 
-    public ApplicationUser getUser(String name) throws AccountException {
-        return applicationUserRepository.findByUsername(name).orElseThrow(RuntimeException::new);
-    }
-
-    public Token loginAccount(String username, String password) throws AccountException {
-
-        Authentication authentication = authenticationManager
-                .authenticate(new UsernamePasswordAuthenticationToken(username, password));
-
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        Token token = new Token();
-        try {
-            token.setToken(jwtSecurityService.generateToken((UserDetails) authentication.getPrincipal()));
-            token.setRefreshToken(jwtSecurityService.generateRefreshToken());
-        } catch (JOSEException e) {
-            throw new AccountException("Token cannot ne created: " + e.getMessage());
-        }
-        return token;
+    public ApplicationUser getUser(String name) throws AccountException, PawsException {
+        return applicationUserRepository.findByUsernameAndActive(name, 1)
+                .orElseThrow(()->new PawsException("Пользователь не найден"));
     }
 }

@@ -1,26 +1,26 @@
-INSERT INTO shelters (name)
-VALUES ('Unknown');
+INSERT INTO shelters (name, active)
+VALUES ('Хвостик', 1);
 
-INSERT INTO shelters (name)
-VALUES ('Лапки');
+INSERT INTO shelters (name, active)
+VALUES ('Лапки', 1);
 
-INSERT INTO shelters (name)
-VALUES ('Ножки');
+INSERT INTO shelters (name, active)
+VALUES ('Ножки', 1);
 
-INSERT INTO persons (name)
-VALUES ('Unknown');
+INSERT INTO persons (name, active)
+VALUES ('Паша', 1);
 
-INSERT INTO persons (name)
-VALUES ('Саша');
+INSERT INTO persons (name, active)
+VALUES ('Саша', 1);
 
-INSERT INTO persons (name)
-VALUES ('Маша');
+INSERT INTO persons (name, active)
+VALUES ('Маша', 1);
 
-INSERT INTO pets (name, shelter_id)
-VALUES ('Пенни', 2);
+INSERT INTO pets (name, shelter_id, active)
+VALUES ('Пенни', 2, 1);
 
-INSERT INTO pets (name, shelter_id)
-VALUES ('Ленни', 1);
+INSERT INTO pets (name, shelter_id, active)
+VALUES ('Ленни', 1, 1);
 
 INSERT INTO person_questions (question)
 VALUES ('Где вы живете?');
@@ -36,6 +36,21 @@ VALUES ('Маленькая квартира', 1);
 
 INSERT INTO person_answers (answer, person_question_id)
 VALUES ('Дом за городом', 1);
+
+INSERT INTO person_questions (question)
+VALUES ('Где вы живете2?');
+
+INSERT INTO person_answers (answer, person_question_id)
+VALUES ('Большая квартира2', 2);
+
+INSERT INTO person_answers (answer, person_question_id)
+VALUES ('Средняя квартира2', 2);
+
+INSERT INTO person_answers (answer, person_question_id)
+VALUES ('Маленькая квартира2', 2);
+
+INSERT INTO person_answers (answer, person_question_id)
+VALUES ('Дом за городом2', 2);
 
 INSERT INTO pet_questions (question)
 VALUES ('Какого размера?');
@@ -103,6 +118,9 @@ VALUES ('ROLE_USER');
 INSERT INTO user_role (role_type)
 VALUES ('ROLE_SUPER_USER');
 
-INSERT INTO application_user (username, password, role_id, person_id)
-VALUES ('admin', '$2a$10$C4Tg3QM48STBOmB51lP3PedtHUxy2Kb1wb2Dx3zkK59y2sjyuq6k6', 2, 1);
+INSERT INTO application_user (username, password, role_id, person_id, active)
+VALUES ('admin', '$2a$10$C4Tg3QM48STBOmB51lP3PedtHUxy2Kb1wb2Dx3zkK59y2sjyuq6k6', 2, 1, 1);
+
+INSERT INTO application_user (username, password, role_id, person_id, active)
+VALUES ('inactive', '$2a$10$C4Tg3QM48STBOmB51lP3PedtHUxy2Kb1wb2Dx3zkK59y2sjyuq6k6', 2, 2, 0);
 

@@ -2,12 +2,10 @@ package paws.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import paws.domain.Person;
 import paws.domain.Pet;
 import paws.domain.Shelter;
 import paws.dto.PetDto;
-import paws.dto.ShelterDto;
-import paws.mapper.PersonMapper;
+import paws.exception.PawsException;
 import paws.mapper.PetMapper;
 import paws.repository.PetRepository;
 
@@ -27,35 +25,52 @@ public class PetServiceImpl implements PetService{
     }
 
     @Override
-    public List<PetDto> getAllbyShelter(Long id) {
-        return StreamSupport.stream(repository.findByShelterId(id).spliterator(), false)
-                .map(mapper::map).toList();
+    public List<Pet> getAllbyShelter(Long id) {
+        return StreamSupport.stream(repository.findByShelterIdAndActive(id, 1).spliterator(), false)
+                .toList();
     }
 
     @Override
-    public Pet getPetById(Long id) {
-        return repository.findById(id).orElseThrow(RuntimeException::new);
+    public Pet getPetById(Long id) throws PawsException {
+        return repository.findById(id).orElseThrow(()->new PawsException("Питомец не найден"));
     }
 
     @Override
-    public void savePet(String name, Long shelterId) {
-//        ShelterDto shelter = shelterService.getShelterById(shelterId);
-//        Pet pet = new Pet(null, name, shelter);
-//        repository.save(pet);
+    public void savePet(String name, Long shelterId) throws PawsException {
+        Shelter shelter = shelterService.getShelterById(shelterId);
+        Pet pet = new Pet(null, name, null, shelter, 1);
+        repository.save(pet);
     }
 
     @Override
-    public void updatePet(Long id, String name, Long shelterId) {
-//        Shelter shelter = shelterService.getShelterById(shelterId);
-//        Pet pet = new Pet(id, name, shelter);
-//        repository.save(pet);
+    public void savePetWithFile(String name, Long shelterId, String path) throws PawsException {
+        Shelter shelter = shelterService.getShelterById(shelterId);
+        Pet pet = new Pet(null, name, path, shelter, 1);
+        repository.save(pet);
+    }
+
+    @Override
+    public void updatePetWithFile(Long id, String name, Long shelterId, String path) throws PawsException {
+
+        Shelter shelter = shelterService.getShelterById(shelterId);
+        Pet pet = new Pet(id, name, path, shelter, 1);
+        repository.save(pet);
+    }
+
+    @Override
+    public void updatePet(Long id, String name, Long shelterId) throws PawsException {
+        Shelter shelter = shelterService.getShelterById(shelterId);
+        Pet petOld = repository.findById(id).orElseThrow(()->new PawsException("Питомец не найден"));
+        Pet pet = new Pet(id, name, petOld.getPath(), shelter, 1);
+        repository.save(pet);
 
     }
 
     @Override
-    public void deletePetById(Long id) {
-        Pet pet = repository.findById(id).orElseThrow(RuntimeException::new);
-        repository.delete(pet);
+    public void deletePetById(Long id) throws PawsException {
+        Pet pet = repository.findById(id).orElseThrow(()->new PawsException("Питомец не найден"));
+        pet.setActive(0);
+        repository.save(pet);
     }
 
 }

@@ -2,9 +2,17 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
-  <title>Питомцы</title>
+  <title>Личный кабинет</title>
 </head>
 <body>
 <h2 th:text="${person.name}"></h2>
+
+<form th:action="@{/persons/edit/{id}(id=${person.id})}">
+  <button type="submit">Редактировать</button>
+</form>
+
+<form th:action="@{/person/test}">
+  <button type="submit">Опрос</button>
+</form>
 </body>
 </html>

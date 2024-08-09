@@ -1,6 +1,7 @@
 package paws.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Data
@@ -15,8 +16,10 @@ public class ApplicationUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotNull
     private String username;// login | email | phone
 
+    @NotNull
     private String password;
 
     @ManyToOne
@@ -26,4 +29,7 @@ public class ApplicationUser {
     @OneToOne
     @JoinColumn(name = "person_id")
     private Person person;
+
+    @Column
+    private int active;
 }

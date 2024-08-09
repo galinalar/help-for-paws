@@ -3,8 +3,7 @@ package paws.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import paws.domain.Shelter;
-import paws.dto.ShelterDto;
-import paws.mapper.ShelterMapper;
+import paws.exception.PawsException;
 import paws.repository.ShelterRepository;
 
 import java.util.List;
@@ -16,16 +15,31 @@ public class ShelterServiceImpl implements ShelterService{
 
     private final ShelterRepository repository;
 
-    private final ShelterMapper mapper;
-
     @Override
-    public List<ShelterDto> getAll() {
-        return StreamSupport.stream(repository.findAll().spliterator(), false)
-                .map(mapper::map).toList();
+    public List<Shelter> getAll() {
+        return StreamSupport.stream(repository.findByActive(1).spliterator(), false)
+                .toList();
     }
 
     @Override
-    public ShelterDto getShelterById(Long id) {
-        return repository.findById(id).map(mapper::map).orElseThrow(RuntimeException::new);
+    public Shelter getShelterById(Long id) throws PawsException {
+        return repository.findById(id).orElseThrow(()->new PawsException("Приют не найден"));
+    }
+
+    @Override
+    public void saveShelter(String name) {
+        repository.save(new Shelter(null, name, 1));
+    }
+
+    @Override
+    public void deleteShelterById(Long id) throws PawsException {
+        Shelter shelter = repository.findById(id).orElseThrow(()->new PawsException("Приют не найден"));
+        shelter.setActive(0);
+        repository.save(shelter);
+    }
+
+    @Override
+    public void updateShelter(Long id, String name) {
+        repository.save(new Shelter(id, name, 1));
     }
 }

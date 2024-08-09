@@ -22,7 +22,7 @@ public class UserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        ApplicationUser applicationUser = applicationUserRepository.findByUsername(username)
+        ApplicationUser applicationUser = applicationUserRepository.findByUsernameAndActive(username, 1)
                 .orElseThrow(()->new UsernameNotFoundException("ApplicationUser not found"));
 
         GrantedAuthority authority = new SimpleGrantedAuthority(

@@ -1,33 +1,73 @@
 package paws.controller;
 
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import paws.dto.PetDto;
-import paws.dto.ShelterDto;
-import paws.service.PetService;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import paws.domain.Shelter;
+import paws.exception.PawsException;
 import paws.service.ShelterService;
 
-import java.security.Principal;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @AllArgsConstructor
+@Slf4j
 public class ShelterController {
     private final ShelterService service;
     @GetMapping("/shelters")
-//    @Secured({"ROLE_SUPER_USER", "ROLE_USER"})
     public String getShelters(Model model) {
-        List<ShelterDto> shelters = service.getAll();
+        log.info("Запрос на получение списка приютов");
+        List<Shelter> shelters = service.getAll();
         model.addAttribute("shelter_list", shelters);
         return "shelters";
+    }
+    @GetMapping("/shelters/create")
+    public String createShelter(Model model) {
+        log.info("Запрос на создание приюта");
+        return "new_shelter";
+    }
+
+    @PostMapping("/shelters/create")
+    public String saveShelter(@RequestParam("name") String name) {
+        service.saveShelter(name);
+        log.info("Успешное создание приюта");
+        return "redirect:/shelters";
+    }
+
+    @PostMapping("/shelters/delete/{id}")
+    public String deleteShelter(@PathVariable Long id) {
+        try {
+            service.deleteShelterById(id);
+            log.info("Отключение приюта");
+            return "redirect:/shelters";
+        } catch (PawsException e){
+            return "error";
+        }
+    }
+    @GetMapping("/shelters/edit/{id}")
+    public String editShelter(Model model, @PathVariable Long id) {
+        try {
+            log.info("Запрос на изменение данных приюта");
+            Shelter shelter = service.getShelterById(id);
+
+            model.addAllAttributes(Map.of("id", id, "shelterName", shelter.getName()));
+            return "edit_shelter";
+        }  catch (PawsException e){
+            return "error";
+        }
+    }
+
+    @PostMapping(path = "/shelters/edit")
+    public String editShelter(@RequestParam("name") String name, @RequestParam("id") Long id) {
+        service.updateShelter(id, name);
+        log.info("Успешное изменение данных приюта");
+        return "redirect:/shelters";
     }
 
 }

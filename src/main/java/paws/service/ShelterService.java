@@ -1,14 +1,19 @@
 package paws.service;
 
-import paws.domain.Person;
 import paws.domain.Shelter;
-import paws.dto.ShelterDto;
+import paws.exception.PawsException;
 
 import java.util.List;
 
 public interface ShelterService {
-    List<ShelterDto> getAll();
+    List<Shelter> getAll();
 
-    ShelterDto getShelterById(Long id);
+    Shelter getShelterById(Long id) throws PawsException;
+
+    void saveShelter(String name);
+
+    void deleteShelterById(Long id) throws PawsException;
+
+    void updateShelter(Long id, String name);
 
 }

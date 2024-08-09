@@ -2,9 +2,7 @@ package paws.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import paws.domain.Person;
 import paws.domain.PersonTest;
-import paws.dto.PersonDto;
 import paws.dto.PersonTestDto;
 
 @Mapper(componentModel = "spring")

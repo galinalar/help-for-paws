@@ -8,14 +8,20 @@
 <form method="POST" th:action="@{/test}">
 <div th:each="question: ${question_list}">
   <h2 th:text="${question.question}"></h2>
-  <div th:each="answer: ${question.answers}">
-      <input type="radio" name="${question.id}" th:text="${answer.answer}" value="${answer.id}">
-  </div>
-<!--  <a th:href="@{/pet/{id}(id=${pet.id})}">Подробнее</a>-->
+<!--  <div th:each="answer: ${question.answers}">-->
+<!--      <input type="radio" name="${question.id}" th:text="${answer.answer}" value="${answer.id}">-->
+<!--  </div>-->
 
-    <button type="submit">Отправить</button>
+  <div class="row">
+    <label for="answer-input">Ответ:</label>
+    <select name="answer">
+      <option id="answer-input" th:each="answer : ${question.answers}" th:value="${answer.id}"
+              th:text="${answer.answer}"></option>
+    </select>
+  </div>
 
 </div>
+  <button type="submit">Отправить</button>
 </form>
 </body>
 </html>

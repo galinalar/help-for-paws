@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Изменить питомца</title>
+</head>
+<body>
+<form method="POST" th:action="@{/pets/edit}">
+    <input type="text" name="name" th:value="${petName}" >
+    <input type="hidden" name="id" th:value="${id}">
+
+    <div class="row">
+        <label for="shelter-input">Приют:</label>
+        <select name="shelter">
+            <option id="shelter-input" th:each="shelter : ${shelter_list}" th:value="${shelter.id}"
+                    th:text="${shelter.name}" th:selected="${shelter.id} == ${shelterID}"></option>
+        </select>
+    </div>
+    <input type="submit" value="Редактировать">
+    <a href="start.html" th:href="@{/}">
+        <button type="button">Отменить</button>
+    </a>
+</form>
+
+</body>
+</html>

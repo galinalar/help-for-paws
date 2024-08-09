@@ -9,6 +9,21 @@
 <div th:each="shelter: ${shelter_list}">
   <h2 th:text="${shelter.name}"></h2>
   <a th:href="@{/pets/{id}(id=${shelter.id})}">Питомцы</a>
+  <form method="POST" th:action="@{/shelters/delete/{id}(id=${shelter.id})}" >
+    <input type="submit" value="Отключить">
+  </form>
+
+  <form th:action="@{/shelters/edit/{id}(id=${shelter.id})}">
+    <button type="submit">Редактировать</button>
+  </form>
+</div>
+<div>
+<form th:action="@{/shelters/create}">
+  <button type="submit">Добавить</button>
+</form>
+<form action="/">
+  <button type="submit">Главная страница</button>
+</form>
 </div>
 </body>
 </html>

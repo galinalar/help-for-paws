@@ -24,6 +24,11 @@ spring:
       path: /h2-console
       settings:
         web-allow-others: true
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
 
 security:
   jwtSecret: 841D8A6C80CBA4FCAD32D5367C18C53B

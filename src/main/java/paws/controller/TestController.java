@@ -1,41 +1,53 @@
 package paws.controller;
 
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.bind.annotation.*;
 import paws.domain.Person;
 import paws.domain.PersonQuestion;
-import paws.domain.Token;
-import paws.dto.PersonQuestionDto;
-import paws.service.PersonQuestionServiceImpl;
+import paws.exception.PawsException;
+import paws.service.PersonQuestionService;
 import paws.service.PersonService;
+import paws.service.PersonTestService;
 
-import javax.security.auth.login.AccountException;
 import java.security.Principal;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @AllArgsConstructor
+@Slf4j
 public class TestController {
-    private final PersonQuestionServiceImpl service;
+    private final PersonQuestionService service;
+    private final PersonTestService personTestService;
+    private final PersonService personService;
     @GetMapping("/test")
-//    @Secured({"ROLE_SUPER_USER", "ROLE_USER"})
-    public String getCurrentPerson(Principal principal, Model model) {
+    public String getTest(Model model) {
+        log.info("Запрос на прохождение опроса");
         List<PersonQuestion> questions = service.getAll();
         model.addAttribute("question_list", questions);
         return "test";
     }
     @ResponseBody
     @PostMapping("/test")
-    public void test(HttpServletRequest request) {//request.getParameterMap()
+    public void test(@RequestParam Map<String, String> param) {//request.getParameterMap()
             System.out.println("jjjj");//через мапу с реквестпарм
 
+    }
+    @GetMapping("/person/test")
+    public String getTestByPerson(Principal principal, Model model) {
+        log.info("Запрос на получение конкретного опроса");
+       try {
+            Person person = personService.getCurrentUser(principal.getName());
+            List<PersonQuestion> questions = personTestService.getPersonTestById(person);
+            if (!questions.isEmpty()) {
+                model.addAttribute("question_list", questions);
+                return "test_person";
+            } else return  "redirect:/test";
+        }catch ( PawsException e){
+            return "error";
+        }
     }
 }

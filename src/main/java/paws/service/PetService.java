@@ -2,18 +2,23 @@ package paws.service;
 
 import paws.domain.Pet;
 import paws.dto.PetDto;
+import paws.exception.PawsException;
 
 import java.util.List;
 
 public interface PetService {
     List<PetDto> getAll();
-    List<PetDto> getAllbyShelter(Long id);
+    List<Pet> getAllbyShelter(Long id);
 
-    Pet getPetById(Long id);
+    Pet getPetById(Long id) throws PawsException;
 
-    void savePet(String name, Long shelterId);
+    void savePet(String name, Long shelterId) throws PawsException;
 
-    void updatePet(Long id, String name, Long shelterId);
+    void savePetWithFile(String name, Long shelterId, String path) throws PawsException;
 
-    void deletePetById(Long id);
+    void updatePetWithFile(Long id, String name, Long shelterId, String path) throws PawsException;
+
+    void updatePet(Long id, String name, Long shelterId) throws PawsException;
+
+    void deletePetById(Long id) throws PawsException;
 }

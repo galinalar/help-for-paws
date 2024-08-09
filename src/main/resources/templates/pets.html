@@ -8,7 +8,25 @@
 
 <div th:each="pet: ${pet_list}">
   <h2 th:text="${pet.name}"></h2>
+  <img th:src="@{/uploads/{name}(name=${pet.path})}"/>
   <a th:href="@{/combination/{id}(id=${pet.id})}">Проверить совместимость</a>
+
+  <form method="POST" th:action="@{/pets/home}" >
+    <input type="hidden" name="shelter" th:value = "${shelter}">
+    <input type="hidden" name="pet" th:value = "${pet.id}">
+    <input type="submit" value="Забрать">
+  </form>
+
+  <form th:action="@{/pets/edit/{id}(id=${pet.id})}">
+    <button type="submit">Редактировать</button>
+  </form>
 </div>
+
+<form th:action="@{/pets/create/{id}(id=${shelter})}">
+  <button type="submit">Добавить</button>
+</form>
+<form action="/">
+  <button type="submit">Главная страница</button>
+</form>
 </body>
 </html>

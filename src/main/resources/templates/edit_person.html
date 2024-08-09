@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Создать персону</title>
+</head>
+<body>
+<form method="POST" th:action="@{/persons/edit}">
+    <input type="text" name="name" th:value="${name}">
+    <input type="hidden" name="id" th:value="${id}">
+    <input type="submit" value="Редактировать">
+    <a href="start.html" th:href="@{/}">
+        <button type="button">Отменить</button>
+    </a>
+</form>
+</body>
+</html>

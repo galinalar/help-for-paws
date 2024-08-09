@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Создать питомца</title>
+</head>
+<body>
+<form method="POST" th:action="@{/pets/create}" enctype="multipart/form-data">
+    <input type="text" placeholder="Введите кличку" name="name">
+    <input type="hidden" name="shelter" th:value = "${id}">
+    <input type="file" name="file" class="form-control-file" multiple="multiple">
+
+    <input type="submit" value="Создать">
+    <a href="start.html" th:href="@{/}">
+        <button type="button">Отменить</button>
+    </a>
+</form>
+
+</body>
+</html>

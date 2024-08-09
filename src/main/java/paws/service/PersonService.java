@@ -2,14 +2,14 @@ package paws.service;
 
 import paws.domain.Person;
 import paws.dto.PersonDto;
-
-import java.util.List;
+import paws.exception.PawsException;
 
 public interface PersonService {
-    List<PersonDto> getAll();
 
-    PersonDto getPersonById(Long id);
-    Person getCurrentUser(String name);
+    PersonDto getPersonById(Long id) throws PawsException;
+    Person getCurrentUser(String name) throws PawsException;
 
     Person savePerson(Person person);
+
+    void updatePerson(Long id, String name);
 }
