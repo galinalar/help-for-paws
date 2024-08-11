@@ -11,6 +11,11 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+
 import paws.domain.CombinationResult;
 import paws.domain.Person;
 import paws.domain.Pet;
@@ -18,11 +23,6 @@ import paws.repository.CombinationRepository;
 import paws.service.CombinationService;
 import paws.service.PersonService;
 import paws.service.PetService;
-
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(CombinationController.class)
 @Import({CombinationController.class, PersonService.class, PetService.class, CombinationService.class})

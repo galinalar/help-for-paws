@@ -1,10 +1,9 @@
 package paws.service;
 
+import java.util.List;
 import paws.domain.Pet;
 import paws.dto.PetDto;
 import paws.exception.PawsException;
-
-import java.util.List;
 
 public interface PetService {
     List<PetDto> getAll();

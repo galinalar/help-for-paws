@@ -1,9 +1,9 @@
 package paws.service;
 
+import java.util.List;
+
 import paws.domain.Shelter;
 import paws.exception.PawsException;
-
-import java.util.List;
 
 public interface ShelterService {
     List<Shelter> getAll();

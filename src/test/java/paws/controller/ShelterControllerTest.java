@@ -11,15 +11,15 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import paws.domain.Shelter;
-import paws.repository.ShelterRepository;
-import paws.service.ShelterService;
-import paws.service.ShelterServiceImpl;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import paws.domain.Shelter;
+import paws.repository.ShelterRepository;
+import paws.service.ShelterService;
+import paws.service.ShelterServiceImpl;
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(ShelterController.class)
 @Import({ShelterController.class, ShelterServiceImpl.class})

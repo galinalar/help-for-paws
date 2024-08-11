@@ -1,5 +1,7 @@
 package paws.service;
 
+import java.util.List;
+import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -10,9 +12,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import paws.domain.Shelter;
 import paws.exception.PawsException;
 import paws.repository.ShelterRepository;
-
-import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;

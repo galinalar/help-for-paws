@@ -1,12 +1,11 @@
 package paws.service;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-import paws.domain.PersonQuestion;
-import paws.repository.PersonQuestionRepository;
-
 import java.util.List;
 import java.util.stream.StreamSupport;
+import org.springframework.stereotype.Service;
+import lombok.RequiredArgsConstructor;
+import paws.domain.PersonQuestion;
+import paws.repository.PersonQuestionRepository;
 
 @Service
 @RequiredArgsConstructor

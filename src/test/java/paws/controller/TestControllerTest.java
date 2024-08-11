@@ -1,5 +1,8 @@
 package paws.controller;
 
+
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,15 +14,12 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import paws.domain.PersonQuestion;
-import paws.service.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
+import paws.domain.PersonQuestion;
+import paws.service.*;
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(TestController.class)
 @Import({TestController.class, PersonQuestionService.class, PersonTestService.class, PersonService.class})

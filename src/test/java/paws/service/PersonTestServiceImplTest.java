@@ -1,5 +1,8 @@
 package paws.service;
 
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -18,10 +21,6 @@ import paws.mapper.PersonTestMapperImpl;
 import paws.repository.PersonAnswerRepository;
 import paws.repository.PersonQuestionRepository;
 import paws.repository.PersonTestRepository;
-
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;

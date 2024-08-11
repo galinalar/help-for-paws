@@ -15,6 +15,7 @@ import javax.security.auth.login.AccountException;
 @Slf4j
 @RequestMapping("/account")
 public class AccountController {
+
     private final AccountService accountService;
 
     @GetMapping("/registration")

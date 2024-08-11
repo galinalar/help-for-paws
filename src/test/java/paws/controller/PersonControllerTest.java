@@ -11,16 +11,16 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import paws.domain.Person;
-import paws.dto.PersonDto;
-import paws.repository.PersonRepository;
-import paws.service.AccountService;
-import paws.service.PersonService;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
+import paws.domain.Person;
+import paws.dto.PersonDto;
+import paws.repository.PersonRepository;
+import paws.service.AccountService;
+import paws.service.PersonService;
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(PersonController.class)
 @Import({PersonController.class, PersonService.class, AccountService.class})

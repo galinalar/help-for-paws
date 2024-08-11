@@ -1,12 +1,11 @@
 package paws.service;
 
-import lombok.RequiredArgsConstructor;
+import java.util.List;
 import org.springframework.stereotype.Service;
+import lombok.RequiredArgsConstructor;
 import paws.domain.*;
 import paws.exception.PawsException;
 import paws.repository.*;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -18,13 +17,6 @@ public class CombinationServiceImpl implements CombinationService{
     @Override
     public CombinationResult getByAnswers(Person person, Pet pet) throws PawsException {
         int result = 0;
-//        List<PersonTest> personAnswers = personTestRepository.findByPerson(person);
-//        List<PetTest> petAnswers = petTestRepository.findByPet(pet);
-//        for (PersonTest personAnswer: personAnswers){
-//            for (PetTest petAnswer: petAnswers){
-//                result+= combinationRepository.findResultByPetAnswerAndPersonAnswer(personAnswer.getAnswer(), petAnswer.getAnswer()).orElseThrow(RuntimeException::new);
-//            }
-//        }
         List<PersonAnswer> personAnswers = personTestRepository.findAnswersByPerson(person);
         List<PetAnswer> petAnswers = petTestRepository.findAnswersByPet(pet);
         for (PersonAnswer personAnswer: personAnswers){

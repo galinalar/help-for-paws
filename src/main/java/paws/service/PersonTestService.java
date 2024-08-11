@@ -1,11 +1,10 @@
 package paws.service;
 
+import java.util.List;
 import paws.domain.Person;
 import paws.domain.PersonQuestion;
 import paws.dto.PersonTestDto;
 import paws.exception.PawsException;
-
-import java.util.List;
 
 public interface PersonTestService {
     List<PersonTestDto> getAll();

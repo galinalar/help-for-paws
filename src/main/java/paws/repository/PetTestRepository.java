@@ -1,11 +1,10 @@
 package paws.repository;
 
+import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import paws.domain.*;
-
-import java.util.List;
 
 @Repository
 public interface PetTestRepository extends CrudRepository<PetTest, Long> {

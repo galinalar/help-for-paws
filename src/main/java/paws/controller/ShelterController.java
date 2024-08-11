@@ -1,19 +1,18 @@
 package paws.controller;
 
-import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import java.util.List;
+import java.util.Map;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import paws.domain.Shelter;
 import paws.exception.PawsException;
 import paws.service.ShelterService;
-
-import java.util.List;
-import java.util.Map;
 
 @Controller
 @AllArgsConstructor

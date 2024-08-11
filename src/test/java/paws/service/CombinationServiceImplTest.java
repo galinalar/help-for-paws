@@ -1,5 +1,8 @@
 package paws.service;
 
+
+import java.util.List;
+import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +14,6 @@ import paws.exception.PawsException;
 import paws.repository.CombinationRepository;
 import paws.repository.PersonTestRepository;
 import paws.repository.PetTestRepository;
-
-import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;

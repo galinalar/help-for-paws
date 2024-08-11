@@ -1,13 +1,12 @@
 package paws.service;
 
-import lombok.RequiredArgsConstructor;
+import java.util.List;
+import java.util.stream.StreamSupport;
 import org.springframework.stereotype.Service;
+import lombok.RequiredArgsConstructor;
 import paws.domain.Shelter;
 import paws.exception.PawsException;
 import paws.repository.ShelterRepository;
-
-import java.util.List;
-import java.util.stream.StreamSupport;
 
 @Service
 @RequiredArgsConstructor

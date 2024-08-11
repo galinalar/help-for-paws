@@ -1,5 +1,6 @@
 package paws.service;
 
+import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +10,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import paws.domain.*;
 import paws.mapper.PersonQuestionMapper;
 import paws.repository.PersonQuestionRepository;
-
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;

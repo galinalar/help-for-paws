@@ -1,7 +1,11 @@
 package paws.service;
 
-import lombok.RequiredArgsConstructor;
+import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.StreamSupport;
 import org.springframework.stereotype.Service;
+import lombok.RequiredArgsConstructor;
 import paws.domain.Person;
 import paws.domain.PersonAnswer;
 import paws.domain.PersonQuestion;
@@ -12,11 +16,6 @@ import paws.mapper.PersonTestMapper;
 import paws.repository.PersonAnswerRepository;
 import paws.repository.PersonQuestionRepository;
 import paws.repository.PersonTestRepository;
-
-import java.util.Date;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.StreamSupport;
 
 @Service
 @RequiredArgsConstructor

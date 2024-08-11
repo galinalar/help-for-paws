@@ -1,8 +1,7 @@
 package paws.service;
 
-import paws.domain.PersonQuestion;
-
 import java.util.List;
+import paws.domain.PersonQuestion;
 
 public interface PersonQuestionService {
     List<PersonQuestion> getAll();

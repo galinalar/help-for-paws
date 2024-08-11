@@ -1,5 +1,7 @@
 package paws.service;
 
+import java.util.Set;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -9,8 +11,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import paws.domain.ApplicationUser;
 import paws.repository.ApplicationUserRepository;
-
-import java.util.Set;
 
 @Service
 public class UserDetailService implements UserDetailsService {

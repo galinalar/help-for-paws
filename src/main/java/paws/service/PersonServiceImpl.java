@@ -1,7 +1,7 @@
 package paws.service;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import lombok.RequiredArgsConstructor;
 import paws.domain.ApplicationUser;
 import paws.domain.Person;
 import paws.dto.PersonDto;

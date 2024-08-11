@@ -1,16 +1,16 @@
 package paws.service;
 
-import lombok.RequiredArgsConstructor;
+import java.util.List;
+import java.util.stream.StreamSupport;
+
 import org.springframework.stereotype.Service;
+import lombok.RequiredArgsConstructor;
 import paws.domain.Pet;
 import paws.domain.Shelter;
 import paws.dto.PetDto;
 import paws.exception.PawsException;
 import paws.mapper.PetMapper;
 import paws.repository.PetRepository;
-
-import java.util.List;
-import java.util.stream.StreamSupport;
 
 @Service
 @RequiredArgsConstructor

@@ -1,5 +1,7 @@
 package paws.service;
 
+import java.util.List;
+import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -15,9 +17,6 @@ import paws.mapper.PetMapper;
 import paws.mapper.PetMapperImpl;
 import paws.repository.PetRepository;
 import paws.repository.ShelterRepository;
-
-import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
